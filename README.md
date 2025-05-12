@@ -12,86 +12,39 @@ TypeScript reduces bugs, improves readability, and makes long-term maintenance e
 
 
 
-# Type Inference in TypeScript
+# `keyof` in TypeScript
 
-## Definition
-Type inference is TypeScript's ability to automatically determine and assign types to variables, expressions, and function return values without explicit type annotations.
+## Purpose
+The `keyof` operator creates a union type of all property names (keys) of an object type, enabling type-safe property access.
 
-## How It Works
-TypeScript analyzes your code context to infer types:
-
+## Example
 ```typescript
-let age = 30;          // inferred as 'number'
-const name = "Alice";  // inferred as 'string' (literal type)
-const isActive = true; // inferred as 'boolean'
-
-function add(a: number, b: number) {
-  return a + b;        // return type inferred as 'number'
+interface User {
+  id: number;
+  name: string;
+  email: string;
 }
-Why It's Helpful
-1. Reduced Boilerplate
-Eliminates need for explicit types in obvious cases:
 
-typescript
-// Without inference
-let count: number = 0;
+// Creates: "id" | "name" | "email"
+type UserKeys = keyof User;
 
-// With inference
-let count = 0;  // TypeScript knows it's a number
-2. Maintains Type Safety
-Provides full type checking even without annotations:
-
-typescript
-const numbers = [1, 2, 3];
-numbers.push("4");  // Error: Argument of type 'string' is not assignable
-3. Contextual Typing
-Smart inference based on usage context:
-
-typescript
-const users = [{ name: "Alice", admin: true }];
-users.push({ name: "Bob", admin: false });  // Type structure is inferred
-4. Better IDE Support
-Enables autocomplete and documentation even without types:
-
-typescript
-const person = { name: "John", age: 30 };
-person.  // IDE suggests 'name' and 'age' properties
-5. Gradual Typing
-Allows mixing typed and untyped code:
-
-typescript
-// Can add types later without breaking changes
-function calculateTotal(price: number, quantity) {  // 'quantity' inferred as 'any'
-  return price * quantity;
+function getUserValue(user: User, key: UserKeys) {
+  return user[key]; // Type-safe access
 }
-Best Practices
-Let TypeScript infer when types are obvious
 
-Explicitly type complex return values
+const currentUser: User = {
+  id: 1,
+  name: "Alice",
+  email: "alice@example.com"
+};
 
-typescript
-function getUser(): { name: string; age: number } {
-  // ...
-}
-Use inference with generics for cleaner code
+const userName = getUserValue(currentUser, "name"); // Valid
+const userAge = getUserValue(currentUser, "age"); // Error: "age" doesn't exist
+Key Benefits
+Prevents accessing non-existent properties
 
-typescript
-function identity<T>(arg: T): T {
-  return arg;  // Type inferred from argument
-}
-Limitations
-May infer any in ambiguous cases
+Enables autocomplete for object keys
 
-Complex logic might need explicit types
+Works with generics for reusable utilities
 
-Return types sometimes need annotations for documentation
-
-Conclusion
-Type inference makes TypeScript:
-
-Less verbose while maintaining safety
-
-Easier to adopt in existing JavaScript code
-
-More maintainable with intelligent code assistance
-
+Helps create mapped types
