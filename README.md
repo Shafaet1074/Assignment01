@@ -1,6 +1,6 @@
 # How TypeScript Improves Code Quality and Maintainability?
 
-#ANSWER:
+## ANSWER:
 
 - ✅ **Static Typing**: Catches errors at compile-time instead of runtime.
 - ✅ **IntelliSense Support**: Improves developer productivity with auto-complete and documentation.
