@@ -1,11 +1,11 @@
-# Interface vs Type in TypeScript
+# How TypeScript Improves Code Quality and Maintainability?
 
-Both `interface` and `type` are used to define object shapes in TypeScript, but they have some key differences:
+##ANSWER
 
-- ✅ `interface` supports **declaration merging**; `type` does not.
-- ✅ `type` can represent **unions**, **tuples**, and **primitives**; `interface` cannot.
-- ✅ `interface` extends with `extends`; `type` uses `&` (intersection).
-- ✅ `type` is more flexible for complex types, while `interface` is ideal for object contracts.
+- ✅ **Static Typing**: Catches errors at compile-time instead of runtime.
+- ✅ **IntelliSense Support**: Improves developer productivity with auto-complete and documentation.
+- ✅ **Clear Contracts**: Interfaces and types make code more readable and self-documenting.
+- ✅ **Refactoring Safety**: Easier and safer to rename, move, or change code structure.
+- ✅ **Scalability**: Makes large codebases easier to manage and collaborate on.
 
-**Use `interface`** for objects and OOP-style code.  
-**Use `type`** for unions, intersections, and primitives.
+TypeScript reduces bugs, improves readability, and makes long-term maintenance easier.
